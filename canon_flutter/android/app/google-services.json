@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "557638764824",
+    "project_id": "canon-6b776",
+    "storage_bucket": "canon-6b776.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:557638764824:android:fc881afbebf6c3daadb66d",
+        "android_client_info": {
+          "package_name": "com.example.canon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "557638764824-pb5t68g7r4ur98kc1uqag6hvnpm8olt7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPftjEYwuGnrDGUubFJmAkohMD7p4bObY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "557638764824-pb5t68g7r4ur98kc1uqag6hvnpm8olt7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
