@@ -15,20 +15,32 @@ class HomeView extends StackedView<HomeViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Doctor Robo'),
-      // ),
-      body: GridView.count(
-        crossAxisCount: 1,
+      appBar: AppBar(
+        title: const Text('Canon'),
+        actions: [
+          if (viewModel.user != null)
+            IconButton(
+              onPressed: viewModel.logout,
+              icon: const Icon(Icons.logout),
+            )
+        ],
+      ),
+      body: ListView(
         children: [
           Option(
-              name: 'Doctor',
+              name: 'Summarization',
               onTap: viewModel.openDoctorView,
-              file: 'assets/lottie/doctor.json'),
+              file: 'assets/lottie/ai.json'),
           Option(
-              name: 'Patient',
+              name: 'Legal documents',
               onTap: viewModel.openUserView,
-              file: 'assets/lottie/users.json'),
+              file: 'assets/lottie/legal.json'),
+          Option(
+              name:
+                  viewModel.user!.userRole == 'lawyer' ? "Clients" : 'Lawyers',
+              onTap: viewModel.openUserView,
+              file:
+                  'assets/lottie/${viewModel.user!.userRole == 'lawyer' ? "lawyers" : 'users'}.json'),
         ],
       ),
     );

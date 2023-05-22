@@ -26,27 +26,18 @@ class RegisterViewModel extends FormViewModel {
   }
 
   void registerUser() async {
-    if (
-        // (_userRole == "doctor" &&
-        isFormValid &&
+    if ((hasType &&
+            typeValue == "lawyer" &&
+            isFormValid &&
             hasEmail &&
-            // hasSpecialization &&
+            hasSpecialization &&
             hasPassword &&
-            hasName
-        // hasAge &&
-        // hasGender
-        // ||
-        // !hasNameValidationMessage &&
-        //     !hasAgeValidationMessage &&
-        //     !hasGenderValidationMessage &&
-        //     !hasEmailValidationMessage &&
-        //     !hasPasswordValidationMessage &&
-        //     hasEmail &&
-        //     hasPassword &&
-        //     hasName &&
-        //     hasAge &&
-        //     hasGender
-        ) {
+            hasName) ||
+        (hasType &&
+            typeValue == "client" &&
+            hasEmail &&
+            hasPassword &&
+            hasName)) {
       setBusy(true);
       log.i("email and pass valid");
       log.i(emailValue!);
@@ -63,13 +54,13 @@ class RegisterViewModel extends FormViewModel {
             fullName: nameValue!,
             registeredOn: DateTime(2022),
             email: result.user!.email!,
-            // age: int.parse(ageValue!),
-            // gender: genderValue!,
-            userRole: "user",
+            userRole: typeValue!,
+            specialization: specializationValue ?? "",
           ),
         );
         if (error == null) {
-          _navigationService.replaceWithHomeView();
+          await _userService.fetchUser();
+          _navigationService.pushNamedAndRemoveUntil(Routes.homeView);
         } else {
           log.i("Firebase error");
           _bottomSheetService.showCustomSheet(

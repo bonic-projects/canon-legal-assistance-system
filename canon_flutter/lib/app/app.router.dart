@@ -80,14 +80,12 @@ class StackedRouter extends _i1.RouterBase {
       return _i9.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.StartupView(),
         settings: data,
-        maintainState: false,
       );
     },
     _i3.HomeView: (data) {
       return _i9.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.HomeView(),
         settings: data,
-        maintainState: false,
       );
     },
     _i4.LoginView: (data) {
@@ -97,21 +95,18 @@ class StackedRouter extends _i1.RouterBase {
       return _i9.MaterialPageRoute<dynamic>(
         builder: (context) => _i4.LoginView(key: args.key),
         settings: data,
-        maintainState: false,
       );
     },
     _i5.SettingsView: (data) {
       return _i9.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.SettingsView(),
         settings: data,
-        maintainState: false,
       );
     },
     _i6.ProfileView: (data) {
       return _i9.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.ProfileView(),
         settings: data,
-        maintainState: false,
       );
     },
     _i7.RegisterView: (data) {
@@ -121,14 +116,12 @@ class StackedRouter extends _i1.RouterBase {
       return _i9.MaterialPageRoute<dynamic>(
         builder: (context) => _i7.RegisterView(key: args.key),
         settings: data,
-        maintainState: false,
       );
     },
     _i8.LoginRegisterView: (data) {
       return _i9.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.LoginRegisterView(),
         settings: data,
-        maintainState: false,
       );
     },
   };

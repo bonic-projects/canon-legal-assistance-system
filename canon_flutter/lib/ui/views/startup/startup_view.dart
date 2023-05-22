@@ -20,7 +20,7 @@ class StartupView extends StackedView<StartupViewModel> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(
-              'assets/icon.png',
+              'assets/logo.png',
               height: 250,
             )
           ],

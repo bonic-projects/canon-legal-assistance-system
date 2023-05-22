@@ -37,9 +37,9 @@ dependencies:
   lottie: ^2.3.1
 
   # Stacked
-  stacked: ^3.2.0
-  stacked_services: ^1.0.0
-  stacked_firebase_auth: ^2.19.1
+  stacked: ^3.2.7
+  stacked_services: ^1.0.2
+  stacked_firebase_auth: ^2.19.2
 
   #Firebase
   firebase_core: ^2.8.0

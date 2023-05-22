@@ -7,16 +7,19 @@ class AppUser {
   // final int age;
   // final String gender;
   final String userRole;
+  final String specialization;
 
-  AppUser(
-      {required this.id,
-      required this.fullName,
-      // required this.token,
-      required this.registeredOn,
-      required this.email,
-      // required this.age,
-      // required this.gender,
-      required this.userRole});
+  AppUser({
+    required this.id,
+    required this.fullName,
+    // required this.token,
+    required this.registeredOn,
+    required this.email,
+    // required this.age,
+    // required this.gender,
+    required this.userRole,
+    required this.specialization,
+  });
 
   AppUser.fromData(Map<String, dynamic> data)
       : id = data['id'],
@@ -28,7 +31,8 @@ class AppUser {
         email = data['email'],
         // age = data['age'],
         // gender = data['gender'],
-        userRole = data['userRole'] ?? "user";
+        userRole = data['userRole'] ?? "user",
+        specialization = data['specialization'] ?? "";
 
   Map<String, dynamic> toJson(keyword) {
     return {

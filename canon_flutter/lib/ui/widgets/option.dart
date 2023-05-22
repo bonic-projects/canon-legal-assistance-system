@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import '../common/app_colors.dart';
+
 class Option extends StatelessWidget {
   final String name;
   final VoidCallback onTap;
@@ -39,7 +41,7 @@ class Option extends StatelessWidget {
                     right: 0,
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Colors.teal.withOpacity(0.5),
+                          color: kcPrimaryColor.withOpacity(0.8),
                           borderRadius: BorderRadius.circular(6)),
                       child: Center(
                         child: Padding(
@@ -47,7 +49,9 @@ class Option extends StatelessWidget {
                           child: Text(
                             name,
                             style: const TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 15),
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15),
                           ),
                         ),
                       ),

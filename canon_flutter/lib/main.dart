@@ -31,7 +31,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Doctor robo',
       debugShowCheckedModeBanner: false,
       theme: Theme.of(context).copyWith(
         primaryColor: kcBackgroundColor,
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
         colorScheme: const ColorScheme(
           brightness: Brightness.light,
           primary: kcPrimaryColor,
-          onPrimary: kcDarkGreyColor,
+          onPrimary: kcVeryLightGrey,
           secondary: kcPrimaryColorDark,
           onSecondary: kcLightGrey,
           error: Colors.red,

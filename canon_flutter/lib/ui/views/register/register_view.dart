@@ -11,27 +11,23 @@ import 'register_view.form.dart';
     name: 'name',
     validator: FormValidators.validateText,
   ),
-  // FormTextField(
-  //   name: 'age',
-  //   validator: FormValidators.validateNumber,
-  // ),
-  // FormDropdownField(
-  //   name: 'gender',
-  //   items: [
-  //     StaticDropdownItem(
-  //       title: 'Male',
-  //       value: 'm',
-  //     ),
-  //     StaticDropdownItem(
-  //       title: 'Female',
-  //       value: 'f',
-  //     ),
-  //     StaticDropdownItem(
-  //       title: 'Not specified',
-  //       value: 'n',
-  //     ),
-  //   ],
-  // ),
+  FormTextField(
+    name: 'specialization',
+    validator: FormValidators.validateNumber,
+  ),
+  FormDropdownField(
+    name: 'type',
+    items: [
+      StaticDropdownItem(
+        title: 'Client',
+        value: 'client',
+      ),
+      StaticDropdownItem(
+        title: 'Lawyer',
+        value: 'lawyer',
+      ),
+    ],
+  ),
   FormTextField(
     name: 'email',
     validator: FormValidators.validateEmail,
@@ -117,53 +113,55 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
                       //   ),
                       // ),
                       // const SizedBox(height: 30),
-                      // if (viewModel.userRole == "doctor")
-                      //   Column(
-                      //     children: [
-                      //       ConstrainedBox(
-                      //         constraints: const BoxConstraints(
-                      //           maxWidth: 350,
-                      //         ),
-                      //         child: TextField(
-                      //           autofocus: true,
-                      //           decoration: InputDecoration(
-                      //             labelText: 'Specialization',
-                      //             errorText:
-                      //                 viewModel.specializationValidationMessage,
-                      //             errorMaxLines: 2,
-                      //           ),
-                      //           controller: specializationController,
-                      //           keyboardType: TextInputType.text,
-                      //           focusNode: specializationFocusNode,
-                      //         ),
-                      //       ),
-                      //       const SizedBox(height: 30),
-                      //     ],
-                      //   ),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     const Text('Select your gender:'),
-                      //     const SizedBox(width: 15),
-                      //     DropdownButton<String>(
-                      //       key: const ValueKey('dropdownField'),
-                      //       value: viewModel.genderValue,
-                      //       onChanged: (value) {
-                      //         viewModel.setGender(value!);
-                      //       },
-                      //       items: GenderValueToTitleMap.keys
-                      //           .map(
-                      //             (value) => DropdownMenuItem<String>(
-                      //               key: ValueKey('$value key'),
-                      //               value: value,
-                      //               child: Text(GenderValueToTitleMap[value]!),
-                      //             ),
-                      //           )
-                      //           .toList(),
-                      //     )
-                      //   ],
-                      // ),
-                      // const SizedBox(height: 30),
+                      if (viewModel.typeValue == "lawyer")
+                        Column(
+                          children: [
+                            ConstrainedBox(
+                              constraints: const BoxConstraints(
+                                maxWidth: 350,
+                              ),
+                              child: TextField(
+                                autofocus: true,
+                                decoration: InputDecoration(
+                                  labelText: 'Specialization',
+                                  errorText:
+                                      viewModel.specializationValidationMessage,
+                                  errorMaxLines: 2,
+                                ),
+                                controller: specializationController,
+                                keyboardType: TextInputType.text,
+                                focusNode: specializationFocusNode,
+                              ),
+                            ),
+                            const SizedBox(height: 30),
+                          ],
+                        ),
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text('Select your user role:'),
+                            const SizedBox(width: 15),
+                            DropdownButton<String>(
+                              key: const ValueKey('dropdownField'),
+                              value: viewModel.typeValue,
+                              onChanged: (value) {
+                                viewModel.setType(value!);
+                              },
+                              items: TypeValueToTitleMap.keys
+                                  .map(
+                                    (value) => DropdownMenuItem<String>(
+                                      key: ValueKey('$value key'),
+                                      value: value,
+                                      child: Text(TypeValueToTitleMap[value]!),
+                                    ),
+                                  )
+                                  .toList(),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 30),
                       ConstrainedBox(
                         constraints: const BoxConstraints(
                           maxWidth: 350,

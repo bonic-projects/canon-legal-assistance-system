@@ -1,3 +1,4 @@
+import 'package:canon/ui/common/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -23,15 +24,13 @@ class CustomButton extends StatelessWidget {
           : TextButton(
               onPressed: onTap,
               child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.teal,
-                      ),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(40))),
+                  decoration: const BoxDecoration(
+                      color: kcPrimaryColor,
+                      borderRadius: BorderRadius.all(Radius.circular(40))),
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text(text),
+                    child:
+                        Text(text, style: const TextStyle(color: Colors.white)),
                   )),
             ),
     );

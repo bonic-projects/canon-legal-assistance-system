@@ -1,9 +1,11 @@
 import 'package:canon/app/app.bottomsheets.dart';
 import 'package:canon/app/app.locator.dart';
 import 'package:canon/app/app.logger.dart';
+import 'package:canon/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
+import '../../../app/app.router.dart';
 import 'login_view.form.dart';
 
 class LoginViewModel extends FormViewModel {
@@ -13,6 +15,7 @@ class LoginViewModel extends FormViewModel {
       locator<FirebaseAuthenticationService>();
   final _navigationService = locator<NavigationService>();
   final BottomSheetService _bottomSheetService = locator<BottomSheetService>();
+  final _userService = locator<UserService>();
 
   void onModelReady() {}
 
@@ -29,7 +32,8 @@ class LoginViewModel extends FormViewModel {
       );
       if (result.user != null) {
         if (result.user != null) {
-          _navigationService.back();
+          await _userService.fetchUser();
+          _navigationService.pushNamedAndRemoveUntil(Routes.homeView);
         }
       } else {
         log.i("Error: ${result.errorMessage}");

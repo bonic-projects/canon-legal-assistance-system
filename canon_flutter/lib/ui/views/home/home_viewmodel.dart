@@ -17,6 +17,13 @@ class HomeViewModel extends BaseViewModel {
   final _userService = locator<UserService>();
   bool get hasUser => _userService.hasLoggedInUser;
 
+  AppUser? get user => _userService.user;
+
+  void logout() {
+    _userService.logout();
+    _navigationService.replaceWithLoginRegisterView();
+  }
+
   // Place anything here that needs to happen before we get into the application
   Future runStartupLogic() async {
     // await Future.delayed(const Duration(seconds: 1));
@@ -25,8 +32,8 @@ class HomeViewModel extends BaseViewModel {
       AppUser? _user = await _userService.fetchUser();
       if (_user != null) {
         log.i(_user.fullName);
-        if (_user.userRole == 'patient') openUserView();
-        if (_user.userRole == 'doctor') openDoctorView();
+        // if (_user.userRole == 'patient') openUserView();
+        // if (_user.userRole == 'doctor') openDoctorView();
       } else {
         log.i("Error");
       }
