@@ -13,7 +13,7 @@ import 'register_view.form.dart';
   ),
   FormTextField(
     name: 'specialization',
-    validator: FormValidators.validateNumber,
+    validator: FormValidators.validateText,
   ),
   FormDropdownField(
     name: 'type',

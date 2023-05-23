@@ -31,7 +31,7 @@ class HomeViewModel extends BaseViewModel {
       setBusy(true);
       AppUser? _user = await _userService.fetchUser();
       if (_user != null) {
-        log.i(_user.fullName);
+        log.i(_user.userRole);
         // if (_user.userRole == 'patient') openUserView();
         // if (_user.userRole == 'doctor') openDoctorView();
       } else {
@@ -45,8 +45,12 @@ class HomeViewModel extends BaseViewModel {
     // _navigationService.navigateToDoctorView();
   }
 
-  void openUserView() {
-    // _navigationService.navigateToPatientView();
+  void openCaseView() {
+    _navigationService.navigateToCaseView();
+  }
+
+  void openChatsView() {
+    _navigationService.navigateToChatsView();
   }
 
   void showDialog() {

@@ -1,3 +1,4 @@
+import 'package:canon/services/storage_service.dart';
 import 'package:canon/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:canon/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:canon/ui/views/home/home_view.dart';
@@ -12,8 +13,11 @@ import 'package:canon/services/user_service.dart';
 import 'package:canon/ui/views/profile/profile_view.dart';
 import 'package:canon/ui/views/register/register_view.dart';
 import 'package:canon/ui/bottom_sheets/alert/alert_sheet.dart';
-import 'package:canon/services/rtdb_service.dart';
 import 'package:canon/ui/views/login_register/login_register_view.dart';
+import 'package:canon/ui/views/case/case_view.dart';
+import 'package:canon/ui/views/case_add/case_add_view.dart';
+import 'package:canon/ui/views/chats/chats_view.dart';
+import 'package:canon/ui/views/chat/chat_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -25,6 +29,10 @@ import 'package:canon/ui/views/login_register/login_register_view.dart';
     MaterialRoute(page: ProfileView),
     MaterialRoute(page: RegisterView),
     MaterialRoute(page: LoginRegisterView),
+    MaterialRoute(page: CaseView),
+    MaterialRoute(page: CaseAddView),
+    MaterialRoute(page: ChatsView),
+    MaterialRoute(page: ChatView),
 // @stacked-route
   ],
   dependencies: [
@@ -34,8 +42,8 @@ import 'package:canon/ui/views/login_register/login_register_view.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: FirebaseAuthenticationService),
     LazySingleton(classType: FirestoreService),
+    LazySingleton(classType: StorageService),
     LazySingleton(classType: UserService),
-    LazySingleton(classType: RtdbService),
 // @stacked-service
   ],
   bottomsheets: [

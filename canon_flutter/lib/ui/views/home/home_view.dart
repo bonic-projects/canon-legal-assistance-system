@@ -33,14 +33,14 @@ class HomeView extends StackedView<HomeViewModel> {
               file: 'assets/lottie/ai.json'),
           Option(
               name: 'Legal documents',
-              onTap: viewModel.openUserView,
+              onTap: viewModel.openCaseView,
               file: 'assets/lottie/legal.json'),
           Option(
               name:
                   viewModel.user!.userRole == 'lawyer' ? "Clients" : 'Lawyers',
-              onTap: viewModel.openUserView,
+              onTap: viewModel.openChatsView,
               file:
-                  'assets/lottie/${viewModel.user!.userRole == 'lawyer' ? "lawyers" : 'users'}.json'),
+                  'assets/lottie/${viewModel.user!.userRole == 'client' ? "lawyers" : 'users'}.json'),
         ],
       ),
     );

@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '557638764824',
     projectId: 'canon-6b776',
     storageBucket: 'canon-6b776.appspot.com',
-    iosClientId: '557638764824-qv0kal72m6qrikiocmfpufhqme7kc78b.apps.googleusercontent.com',
+    iosClientId:
+        '557638764824-qv0kal72m6qrikiocmfpufhqme7kc78b.apps.googleusercontent.com',
     iosBundleId: 'com.example.secretApp',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '557638764824',
     projectId: 'canon-6b776',
     storageBucket: 'canon-6b776.appspot.com',
-    iosClientId: '557638764824-qv0kal72m6qrikiocmfpufhqme7kc78b.apps.googleusercontent.com',
+    iosClientId:
+        '557638764824-qv0kal72m6qrikiocmfpufhqme7kc78b.apps.googleusercontent.com',
     iosBundleId: 'com.example.secretApp',
   );
 }

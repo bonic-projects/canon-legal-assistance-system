@@ -28,7 +28,7 @@ final Map<String, FocusNode> _RegisterViewFocusNodes = {};
 
 final Map<String, String? Function(String?)?> _RegisterViewTextValidations = {
   NameValueKey: FormValidators.validateText,
-  SpecializationValueKey: FormValidators.validateNumber,
+  SpecializationValueKey: FormValidators.validateText,
   EmailValueKey: FormValidators.validateEmail,
   PasswordValueKey: FormValidators.validatePassword,
 };

@@ -17,9 +17,11 @@ class CustomButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: isLoading
-          ? const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: CircularProgressIndicator(strokeWidth: 2),
+          ? const Center(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: CircularProgressIndicator(strokeWidth: 2),
+              ),
             )
           : TextButton(
               onPressed: onTap,
