@@ -29,38 +29,6 @@ class MessageTileModel extends BaseViewModel {
     notifyListeners();
   }
 
-  // bool _isUnlocked = false;
-  // bool get isUnlocked => _isUnlocked;
-  // void unLock() async {
-  //   setBusy(true);
-  //   double? matchedFace = await _regulaService.checkMatch(_user.imgString!,
-  //       isLiveness: _chatMessage.securityLevel == 2);
-  //   if (matchedFace == null) {
-  //     _bottomSheetService.showCustomSheet(
-  //       variant: BottomSheetType.alert,
-  //       title: "Canceled",
-  //       description: "",
-  //     );
-  //   } else if (matchedFace > 90) {
-  //     log.i("Unlocked: $matchedFace%");
-  //     _isUnlocked = true;
-  //     if (_chatMessage.fileLink != '') fileDownloadAndDecrypt();
-  //     setBusy(false);
-  //     _bottomSheetService.showCustomSheet(
-  //       variant: BottomSheetType.success,
-  //       title: "Face unlocked",
-  //       description: "You can now view the file.",
-  //     );
-  //   } else {
-  //     _bottomSheetService.showCustomSheet(
-  //       variant: BottomSheetType.alert,
-  //       title: "No verified",
-  //       description: "User not verified or try again.",
-  //     );
-  //   }
-  //   setBusy(false);
-  // }
-
   Future<void> deleteMessage() async {
     log.i("Delete message");
     setBusy(true);

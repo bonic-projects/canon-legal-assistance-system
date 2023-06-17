@@ -61,6 +61,7 @@ class CaseViewModel extends BaseViewModel {
               selectedJurisdiction: _selectedJurisdiction,
               selectedCaseClass: _selectedCaseClass) ??
           <CaseModel>[];
+      log.i(_cases.length);
       notifyListeners();
     } catch (e) {
       // Handle error while fetching cases

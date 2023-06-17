@@ -15,7 +15,7 @@
 <!--    <uses-permission android:name="android.permission.WAKE_LOCK" />-->
 <!--    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" tools:ignore="ProtectedPermissions" />-->
    <application
-        android:label="AI-Triad"
+        android:label="Canon"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

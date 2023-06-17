@@ -30,9 +30,12 @@ dependencies:
   flutter:
     sdk: flutter
 
+
+  #AI
+  chat_gpt_sdk: ^2.1.5
+
   #File
   path_provider: ^2.0.14
-  filesystem_picker: ^3.1.0
   file_picker: ^5.3.0
   open_file_plus: ^3.4.0
 

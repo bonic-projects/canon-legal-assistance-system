@@ -25,6 +25,7 @@ class CaseAddView extends StackedView<CaseAddViewModel> {
             children: [
               const SizedBox(height: 16),
               TextFormField(
+                textCapitalization: TextCapitalization.words,
                 decoration: const InputDecoration(labelText: 'Name'),
                 onChanged: viewModel.setName,
                 validator: (value) {
@@ -56,6 +57,18 @@ class CaseAddView extends StackedView<CaseAddViewModel> {
                 ],
               ),
               const SizedBox(height: 16),
+              TextFormField(
+                textCapitalization: TextCapitalization.words,
+                decoration: const InputDecoration(labelText: 'Case Type'),
+                onChanged: viewModel.setCaseType,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a case type';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
               Column(
                 children: [
                   const Padding(
@@ -65,11 +78,12 @@ class CaseAddView extends StackedView<CaseAddViewModel> {
                   ),
                   TextFormField(
                     textCapitalization: TextCapitalization.words,
-                    decoration: const InputDecoration(labelText: 'Case Type'),
-                    onChanged: viewModel.setCaseType,
+                    decoration:
+                        const InputDecoration(labelText: 'Jurisdiction'),
+                    onChanged: viewModel.setJurisdiction,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter a case type';
+                        return 'Please enter a jurisdiction';
                       }
                       return null;
                     },
@@ -78,17 +92,7 @@ class CaseAddView extends StackedView<CaseAddViewModel> {
               ),
               const SizedBox(height: 16),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Jurisdiction'),
-                onChanged: viewModel.setJurisdiction,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a jurisdiction';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
+                textCapitalization: TextCapitalization.words,
                 decoration:
                     const InputDecoration(labelText: 'Parties Involved'),
                 onChanged: viewModel.setPartiesInvolved,
@@ -101,6 +105,7 @@ class CaseAddView extends StackedView<CaseAddViewModel> {
               ),
               const SizedBox(height: 16),
               TextFormField(
+                textCapitalization: TextCapitalization.words,
                 decoration: const InputDecoration(labelText: 'Language'),
                 onChanged: viewModel.setLanguage,
                 validator: (value) {
@@ -112,6 +117,7 @@ class CaseAddView extends StackedView<CaseAddViewModel> {
               ),
               const SizedBox(height: 16),
               TextFormField(
+                textCapitalization: TextCapitalization.words,
                 decoration:
                     const InputDecoration(labelText: 'Statutes Involved'),
                 onChanged: viewModel.setStatutesInvolved,

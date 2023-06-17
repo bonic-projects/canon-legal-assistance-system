@@ -26,16 +26,16 @@ class StorageService with ListenableServiceMixin {
     // final filePath = 'chats/${DateTime.now().millisecondsSinceEpoch}';
     final filePath = path;
     final reference = _storage.ref().child(filePath);
-    final uploadTask = reference.putFile(file);
+    final TaskSnapshot snapshot = await reference.putFile(file);
 
-    uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
-      // snapshot
-      _progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
-      notifyListeners();
-      // return Text('${progress.toStringAsFixed(2)}%');
-    });
+    // uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
+    //   // snapshot
+    //   _progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+    //   notifyListeners();
+    //   // return Text('${progress.toStringAsFixed(2)}%');
+    // });
 
-    final snapshot = await uploadTask.whenComplete(() {});
+    // final snapshot = await uploadTask.whenComplete(() {});
     final url = await snapshot.ref.getDownloadURL();
     _progress = 0;
     notifyListeners();
@@ -69,6 +69,15 @@ class StorageService with ListenableServiceMixin {
     //   log.e('Download error: $e');
     // }
     return null;
+  }
+
+  Future<File?> downloadFileWithUrl(String url, String format) async {
+    final http.Response downloadData = await http.get(Uri.parse(url));
+    final Directory systemTempDir = await getTemporaryDirectory();
+    final File downloadToFile =
+        File('${systemTempDir.path}/files/file.$format');
+    await downloadToFile.writeAsBytes(downloadData.bodyBytes);
+    return downloadToFile;
   }
 
   Future deleteChatFiles(String id) async {

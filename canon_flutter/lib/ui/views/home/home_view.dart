@@ -29,7 +29,7 @@ class HomeView extends StackedView<HomeViewModel> {
         children: [
           Option(
               name: 'Summarization',
-              onTap: viewModel.openDoctorView,
+              onTap: viewModel.openGptView,
               file: 'assets/lottie/ai.json'),
           Option(
               name: 'Legal documents',

@@ -18,6 +18,10 @@ import 'package:canon/ui/views/case/case_view.dart';
 import 'package:canon/ui/views/case_add/case_add_view.dart';
 import 'package:canon/ui/views/chats/chats_view.dart';
 import 'package:canon/ui/views/chat/chat_view.dart';
+import 'package:canon/ui/views/gpt/gpt_view.dart';
+
+import '../services/gpt_service.dart';
+import 'package:canon/ui/views/gpt/gpt_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -33,6 +37,7 @@ import 'package:canon/ui/views/chat/chat_view.dart';
     MaterialRoute(page: CaseAddView),
     MaterialRoute(page: ChatsView),
     MaterialRoute(page: ChatView),
+    MaterialRoute(page: GptView),
 // @stacked-route
   ],
   dependencies: [
@@ -44,6 +49,7 @@ import 'package:canon/ui/views/chat/chat_view.dart';
     LazySingleton(classType: FirestoreService),
     LazySingleton(classType: StorageService),
     LazySingleton(classType: UserService),
+    LazySingleton(classType: GptChatService),
 // @stacked-service
   ],
   bottomsheets: [

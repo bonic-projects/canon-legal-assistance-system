@@ -1,3 +1,4 @@
+import 'package:canon/ui/smart_widgets/case_file.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -19,74 +20,97 @@ class CaseView extends StackedView<CaseViewModel> {
       appBar: AppBar(
         title: const Text("Legal documents"),
       ),
-      body: Container(
-        padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Image.asset(
-                'assets/logo.png',
-                height: 150,
-              ),
-            ),
-            CustomButtonSelector(
-                onTap: viewModel.openCaseAddView, text: "Add case file"),
-            if (viewModel.isBusy)
-              const Center(child: CircularProgressIndicator())
-            else if (viewModel.hasError)
-              Text('Error: ${viewModel.error}')
-            else
-              Expanded(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // DropdownButton<String>(
-                        //   value: viewModel.selectedCaseClass,
-                        //   hint: const Text('Select Case Class'),
-                        //   items: viewModel.caseClasses
-                        //       .map((caseClass) => DropdownMenuItem(
-                        //             value: caseClass,
-                        //             child: Text(caseClass),
-                        //           ))
-                        //       .toList(),
-                        //   onChanged: viewModel.setSelectedCaseClass,
-                        // ),
-                        const SizedBox(width: 16),
-                        // DropdownButton<String>(
-                        //   value: viewModel.selectedJurisdiction,
-                        //   hint: const Text('Select Jurisdiction'),
-                        //   items: viewModel.jurisdictions
-                        //       .map((jurisdiction) => DropdownMenuItem(
-                        //             value: jurisdiction,
-                        //             child: Text(jurisdiction),
-                        //           ))
-                        //       .toList(),
-                        //   onChanged: viewModel.setSelectedJurisdiction,
-                        // ),
-                      ],
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: viewModel.cases.length,
-                        itemBuilder: (context, index) {
-                          CaseModel caseFile = viewModel.cases[index];
-                          return ListTile(
-                            title: Text(caseFile.name),
-                            subtitle: Text(
-                                'Case Class: ${caseFile.caseClass}, Jurisdiction: ${caseFile.jurisdiction}'),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (viewModel.user != null && viewModel.user!.userRole == "lawyer")
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset(
+                    'assets/logo.png',
+                    height: 150,
+                  ),
                 ),
-              )
-          ],
-        ),
+                CustomButtonSelector(
+                    onTap: viewModel.openCaseAddView, text: "Add case file"),
+              ],
+            ),
+          if (viewModel.isBusy)
+            const Center(child: CircularProgressIndicator())
+          else if (viewModel.hasError)
+            Text('Error: ${viewModel.error}')
+          else
+            Expanded(
+              child: Column(
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Case class: ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 18),
+                          ),
+                          DropdownButton<String>(
+                            value: viewModel.selectedCaseClass.isEmpty
+                                ? viewModel.caseClasses[0]
+                                : viewModel.selectedCaseClass,
+                            hint: const Text('Select Case Class'),
+                            items:
+                                viewModel.caseClasses.toList().map((caseClass) {
+                              return DropdownMenuItem<String>(
+                                value: caseClass,
+                                child: Text(caseClass),
+                              );
+                            }).toList(),
+                            onChanged: viewModel.setSelectedCaseClass,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Jurisdiction: ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 18),
+                          ),
+                          DropdownButton<String>(
+                            value: viewModel.selectedJurisdiction.isEmpty
+                                ? viewModel.jurisdictions.first
+                                : viewModel.selectedJurisdiction,
+                            hint: const Text('Select Jurisdiction'),
+                            items: viewModel.jurisdictions
+                                .map((jurisdiction) => DropdownMenuItem(
+                                      value: jurisdiction,
+                                      child: Text(jurisdiction),
+                                    ))
+                                .toList(),
+                            onChanged: viewModel.setSelectedJurisdiction,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: viewModel.cases.length,
+                      itemBuilder: (context, index) {
+                        CaseModel caseFile = viewModel.cases[index];
+                        return CaseFileWidget(caseFile: caseFile);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            )
+        ],
       ),
     );
   }

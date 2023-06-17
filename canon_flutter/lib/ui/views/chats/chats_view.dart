@@ -20,16 +20,19 @@ class ChatsView extends StackedView<ChatsViewModel> {
           'Chats',
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: kcPrimaryColor,
-        onPressed: viewModel.showBottomSheetUserSearch,
-        label: const Row(
-          children: [
-            Text('New chat'),
-            Icon(Icons.add_circle),
-          ],
-        ),
-      ),
+      floatingActionButton:
+          viewModel.user != null && viewModel.user!.userRole == "client"
+              ? FloatingActionButton.extended(
+                  backgroundColor: kcPrimaryColor,
+                  onPressed: viewModel.showBottomSheetUserSearch,
+                  label: const Row(
+                    children: [
+                      Text('New chat'),
+                      Icon(Icons.add_circle),
+                    ],
+                  ),
+                )
+              : null,
       body: Center(
         child: viewModel.isBusy
             ? const Center(child: CircularProgressIndicator())

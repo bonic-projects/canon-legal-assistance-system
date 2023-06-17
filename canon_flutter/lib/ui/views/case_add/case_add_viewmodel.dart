@@ -1,8 +1,7 @@
 import 'dart:io';
-import 'package:filesystem_picker/filesystem_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:stacked/stacked.dart';
+import 'package:file_picker/file_picker.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.logger.dart';
@@ -69,17 +68,13 @@ class CaseAddViewModel extends BaseViewModel {
 
   Future<void> pickFileAndUpload(context) async {
     setBusy(true);
-    Directory? externalDir = await getExternalStorageDirectory();
-    String? path = await FilesystemPicker.open(
-      title: 'Open file',
-      context: context,
-      rootDirectory: externalDir!,
-      fsType: FilesystemType.file,
-      allowedExtensions: ['.txt'],
-      fileTileSelectMode: FileTileSelectMode.wholeTile,
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['png', 'jpg', 'pdf', 'doc'],
     );
-    if (path != null) {
-      file = File(path);
+
+    if (result != null) {
+      file = File(result.files.single.path!);
       _id = _firestoreSerivce.getCaseDocumentId();
       log.i(file!.path);
       try {
@@ -96,8 +91,8 @@ class CaseAddViewModel extends BaseViewModel {
   }
 
   Future<void> addCaseFile() async {
-    setBusy(true);
     if (formKey.currentState!.validate() && _fileLink != null) {
+      setBusy(true);
       CaseModel caseFile = CaseModel(
         name: _name!,
         caseClass: _caseClass!,
@@ -107,6 +102,7 @@ class CaseAddViewModel extends BaseViewModel {
         language: _language!,
         statutesInvolved: _statutesInvolved!,
         fileLink: _fileLink!,
+        format: file!.path.split(".").last,
         id: _id!,
         date: DateTime.now(),
       );
@@ -114,6 +110,8 @@ class CaseAddViewModel extends BaseViewModel {
       try {
         // Save the case file to Firestore
         await _firestoreSerivce.addCaseFile(caseFile);
+        log.i("added");
+        formKey.currentState!.reset();
 
         // Reset the form or navigate to a different screen after saving
       } catch (e) {

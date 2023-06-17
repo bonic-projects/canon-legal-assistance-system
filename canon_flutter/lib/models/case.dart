@@ -8,6 +8,7 @@ class CaseModel {
   String language;
   List<String> statutesInvolved;
   String fileLink;
+  String format;
   DateTime date;
 
   CaseModel({
@@ -20,6 +21,7 @@ class CaseModel {
     required this.language,
     required this.statutesInvolved,
     required this.fileLink,
+    required this.format,
     required this.date,
   });
 
@@ -34,6 +36,7 @@ class CaseModel {
       'language': language,
       'statutesInvolved': statutesInvolved,
       'fileLink': fileLink,
+      'format': format,
       'date': date,
     };
   }
@@ -49,6 +52,7 @@ class CaseModel {
       language: map['language'],
       statutesInvolved: List<String>.from(map['statutesInvolved']),
       fileLink: map['fileLink'],
+      format: map['format'],
       date: map['date'] != null ? map['date'].toDate() : DateTime(2022),
     );
   }

@@ -41,8 +41,8 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-  void openDoctorView() {
-    // _navigationService.navigateToDoctorView();
+  void openGptView() {
+    _navigationService.navigateToGptView();
   }
 
   void openCaseView() {

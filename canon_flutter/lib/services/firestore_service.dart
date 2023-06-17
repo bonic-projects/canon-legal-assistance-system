@@ -83,7 +83,7 @@ class FirestoreService {
   }
 
   final CollectionReference casesCollection =
-      FirebaseFirestore.instance.collection(TokenFirestoreKey);
+      FirebaseFirestore.instance.collection(CaseFirestoreKey);
 
   String getCaseDocumentId() {
     DocumentReference docRef = casesCollection.doc();
@@ -112,7 +112,7 @@ class FirestoreService {
     required String selectedCaseClass,
   }) async {
     try {
-      Query query = casesCollection.orderBy('createdAt', descending: true);
+      Query query = casesCollection.orderBy('date', descending: true);
 
       if (selectedCaseClass.isNotEmpty) {
         query = query.where('caseClass', isEqualTo: selectedCaseClass);
