@@ -36,6 +36,20 @@ class FirestoreService {
     }
   }
 
+  Future<bool> addRating({required String uid, required int rating}) async {
+    try {
+      final userDocument = usersCollection.doc(uid);
+      await userDocument.set({
+        "ratings": FieldValue.arrayUnion([rating])
+      }, SetOptions(merge: true));
+      log.v('Rating added at ${userDocument.path}');
+      return true;
+    } catch (error) {
+      log.e("Error $error");
+      return false;
+    }
+  }
+
   Future<AppUser?> getUser({required String userId}) async {
     log.i('userId:$userId');
 
@@ -160,6 +174,7 @@ class FirestoreService {
         id: chatRef.id,
         name: chat.name,
         members: chat.members,
+        rating: chat.rating,
         createdAt: chat.createdAt,
       );
       // final DocumentReference documentReference =

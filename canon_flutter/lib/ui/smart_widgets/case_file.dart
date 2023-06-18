@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:open_file_plus/open_file_plus.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../app/app.logger.dart';
 import '../../models/case.dart';
 import 'package:flutter/material.dart';
 
@@ -38,6 +39,7 @@ class CaseFileWidget extends StatelessWidget {
 }
 
 class CaseFileViewModel extends BaseViewModel {
+  final log = getLogger('CaseFileViewModel');
   late CaseModel _caseFile;
   final StorageService _storageService = StorageService();
 
@@ -52,6 +54,7 @@ class CaseFileViewModel extends BaseViewModel {
     // log.i("Started");
     File? downloaded = await _storageService.downloadFileWithUrl(
         _caseFile.fileLink, _caseFile.format);
+    log.i(downloaded);
     if (downloaded != null) {
       OpenFile.open(downloaded.path);
     }

@@ -5,7 +5,7 @@ class GptChatService {
   final log = getLogger('GptService');
 
   final openAI = OpenAI.instance.build(
-      token: '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',
+      token: 'API_KEY_HERE',
       baseOption: HttpSetup(receiveTimeout: const Duration(seconds: 20)),
       enableLog: true);
 

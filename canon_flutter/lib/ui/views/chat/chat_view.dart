@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import '../../../models/chat.dart';
@@ -75,7 +76,39 @@ class ChatView extends StackedView<ChatViewModel> {
                         },
                       ),
           ),
-          MessageSender(chat: chat),
+          if (viewModel.chat.rating != 0)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: RatingBarIndicator(
+                rating: viewModel.chat.rating.toDouble(),
+                itemBuilder: (context, index) => const Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                itemCount: 5,
+                itemSize: 30.0,
+              ),
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: RatingBar.builder(
+                initialRating: 0,
+                minRating: 1,
+                direction: Axis.horizontal,
+                itemCount: 5,
+                itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                itemBuilder: (context, _) => const Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rating) {
+                  // print(rating);
+                  viewModel.rate(rating.round());
+                },
+              ),
+            ),
+          if (viewModel.chat.rating == 0) MessageSender(chat: chat),
         ],
       ),
     );

@@ -3,18 +3,21 @@ class Chat {
   final String name;
   final List<String> members;
   final DateTime createdAt;
+  int rating;
 
   Chat({
     required this.id,
     required this.name,
     required this.members,
     required this.createdAt,
+    required this.rating,
   });
 
   static Chat fromJson(Map<String, dynamic> json) {
     return Chat(
       id: json['id'],
       name: json['name'],
+      rating: json['rating'] ?? 0,
       members: List<String>.from(json['members']),
       createdAt: json['createdAt'].toDate(),
     );
@@ -26,6 +29,7 @@ class Chat {
       'name': name,
       'members': members,
       'createdAt': createdAt,
+      'rating': rating,
     };
   }
 
@@ -37,6 +41,7 @@ class Chat {
       id: '',
       name: name,
       members: members,
+      rating: 0,
       createdAt: DateTime.now(),
     );
   }

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
 import '../../../app/app.logger.dart';
@@ -17,7 +18,7 @@ class ChatViewModel extends StreamViewModel<List<ChatMessage>>
   final log = getLogger('ChatViewModel');
 
   // final _navigationService = locator<NavigationService>();
-  // final _dialogService = locator<DialogService>();
+  final _dialogService = locator<DialogService>();
   // final _bottomSheetService = locator<BottomSheetService>();
   final _userService = locator<UserService>();
   final FirestoreService _firestoreService = locator<FirestoreService>();
@@ -42,6 +43,21 @@ class ChatViewModel extends StreamViewModel<List<ChatMessage>>
       log.i("Receiver: ${receiver!.fullName}");
     }
     setBusy(false);
+  }
+
+  void rate(int value) async {
+    log.i("Rating: $value");
+    final DialogResponse? result = await _dialogService.showConfirmationDialog(
+        title: "Add rating",
+        description:
+            "Are you want to rate $value.0 this lawyer and end this chat?",
+        confirmationTitle: "Yes");
+    if (result != null && result.confirmed) {
+      chat.rating = value;
+      notifyListeners();
+      _firestoreService.updateChat(chat);
+      _firestoreService.addRating(uid: _receiver!.id, rating: value);
+    }
   }
 
   AppUser getUser(String id) {

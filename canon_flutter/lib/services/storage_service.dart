@@ -74,8 +74,7 @@ class StorageService with ListenableServiceMixin {
   Future<File?> downloadFileWithUrl(String url, String format) async {
     final http.Response downloadData = await http.get(Uri.parse(url));
     final Directory systemTempDir = await getTemporaryDirectory();
-    final File downloadToFile =
-        File('${systemTempDir.path}/files/file.$format');
+    final File downloadToFile = File('${systemTempDir.path}/file.$format');
     await downloadToFile.writeAsBytes(downloadData.bodyBytes);
     return downloadToFile;
   }

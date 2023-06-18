@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../models/chat.dart';
@@ -82,7 +83,24 @@ class ChatListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text(chat.name),
+        title: Row(
+          children: [
+            Text(chat.name),
+            if (chat.rating != 0)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RatingBarIndicator(
+                  rating: chat.rating.toDouble(),
+                  itemBuilder: (context, index) => const Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
+                  itemCount: 5,
+                  itemSize: 30.0,
+                ),
+              )
+          ],
+        ),
         // subtitle: Text(chat.email),
         leading: CircleAvatar(
             // backgroundImage:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -113,7 +114,36 @@ class NoticeSheet extends StackedView<NoticeSheetModel> {
                                   return Card(
                                     child: ListTile(
                                       title: Text(user.fullName),
-                                      subtitle: Text(user.email),
+                                      subtitle: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          if (user.ratings.isNotEmpty)
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 2.0),
+                                              child: RatingBarIndicator(
+                                                rating: user.ratings.reduce(
+                                                        (a, b) => a + b) /
+                                                    user.ratings.length,
+                                                itemBuilder: (context, index) =>
+                                                    const Icon(
+                                                  Icons.star,
+                                                  color: Colors.amber,
+                                                ),
+                                                itemCount: 5,
+                                                itemSize: 20.0,
+                                                // itemPadding: const EdgeInsets.only(right: 10),
+                                              ),
+                                            ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(3.0),
+                                            child: Text(user.email),
+                                          ),
+                                        ],
+                                      ),
                                       leading: CircleAvatar(
                                         // backgroundImage: user.photoUrl != "nil"
                                         //     ? NetworkImage(user.photoUrl)

@@ -56,6 +56,7 @@ class RegisterViewModel extends FormViewModel {
             email: result.user!.email!,
             userRole: typeValue!,
             specialization: specializationValue ?? "",
+            ratings: [],
           ),
         );
         if (error == null) {

@@ -33,6 +33,7 @@ class NoticeSheetModel extends BaseViewModel {
         setError(null);
       } catch (e) {
         setError(e.toString());
+        log.e(e);
       }
 
       setBusy(false);
